@@ -15,7 +15,7 @@ class Game
   end
 
   def end?
-    if (current_player === 0)
+    if (@players[0].lives === 0 || @players[1].lives === 0)
       @game_over = true
       switch_turn
       p "#{current_player.name} wins with a score of #{current_player.lives_left}" 
@@ -29,21 +29,24 @@ class Game
   end
 
 def start!
-  until (game_over) do 
+  until (@game_over) do 
     questions = Questions.new
-    p "#{current_player.name}: #{Question.question}"
-        player_answer
-
-    if (player_answer === Question.answer)
+    p "#{current_player.name}: #{questions.question}"
+    if (player_answer === questions.answer)
       p "#{current_player.name}: YES! you are correct."
     else 
       current_player.fail
       p "#{current_player.name}: Seriously? No!"
+      p " the correct answer is #{questions.answer}"
   end
 
-  if (!end?)
-p "P1: #{players[0].lives_left} vs P2: #{players[1].lives_left}"
-switch_turn
-  end
+    if (!end?)
+      p " ----- SCORE ----- "
+      p "P1: #{@players[0].lives_left} vs P2: #{@players[1].lives_left}"
+      switch_turn
+      p "----- NEW TURN -----"
+    end
 
+  end
+end
 end

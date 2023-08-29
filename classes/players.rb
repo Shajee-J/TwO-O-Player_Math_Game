@@ -14,7 +14,7 @@ class Player
     "#{@lives}/3" 
   end
 
-  attr_accessor :name :lives
+  attr_accessor :name, :lives
 
 end
 
