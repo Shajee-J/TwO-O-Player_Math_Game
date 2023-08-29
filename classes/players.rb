@@ -2,6 +2,7 @@ class Player
 
   def initialize(name)
     @name = name
+    @lives_left = lives_left
     @lives = 3
   end
 
